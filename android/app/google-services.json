@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "433037849176",
+    "project_id": "kawaiibd-chitchat",
+    "storage_bucket": "kawaiibd-chitchat.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:433037849176:android:e68bb380a9841740eb102d",
+        "android_client_info": {
+          "package_name": "com.sabikrahat.kawaiibdchitchat"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCWkTpedxPpfHBgQcDA45Mjo9a7zmuePvY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
