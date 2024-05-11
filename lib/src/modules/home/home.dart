@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
+import 'package:kawaiibd_flutterfire_task/app.routes.dart';
+import 'package:kawaiibd_flutterfire_task/go.routes.dart';
 
 import '../../config/constants.dart';
 import '../../shared/show_toast/awsome.snackbar/awesome.snackbar.dart';
 import '../../shared/show_toast/awsome.snackbar/show.awesome.snackbar.dart';
 import '../../shared/show_toast/timer.snackbar/show.timer.snackbar.dart';
-import '../profile/profile.dart';
-import '../settings/view/setting.view.dart';
 
 class HomeView extends StatelessWidget {
   const HomeView({super.key});
@@ -17,15 +16,7 @@ class HomeView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text(appName),
-        actions: [
-          IconButton(
-            onPressed: () => context.goNamed(SettingsView.name),
-            icon: const Icon(Icons.settings_outlined),
-          ),
-        ],
-      ),
+      appBar: AppBar(title: const Text(appName)),
       body: Center(
         child: Column(
           mainAxisAlignment: mainCenter,
@@ -35,19 +26,9 @@ class HomeView extends StatelessWidget {
             const Text('Welcome to $appName'),
             const SizedBox(height: 15),
             ElevatedButton(
-              onPressed: () => context.goNamed(
-                ProfileView.name,
-                pathParameters: {
-                  'uid': '${DateTime.now().millisecondsSinceEpoch}'
-                },
-              ),
+              onPressed: () => context.goPush(
+                  '${AppRoutes.profileRoute}/${DateTime.now().millisecondsSinceEpoch}'),
               child: const Text('Go to Profile'),
-            ),
-            const SizedBox(height: 15),
-            const SizedBox(height: 15),
-            ElevatedButton(
-              onPressed: () => context.goNamed(SettingsView.advancedName),
-              child: const Text('Settings Advanced'),
             ),
             const SizedBox(height: 15),
             ElevatedButton(
@@ -64,6 +45,12 @@ class HomeView extends StatelessWidget {
             ),
           ],
         ),
+      ),
+      floatingActionButton: FloatingActionButton.small(
+        onPressed: () {
+          context.goPush(AppRoutes.settingsRoute);
+        },
+        child: const Icon(Icons.settings),
       ),
     );
   }

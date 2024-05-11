@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:kawaiibd_flutterfire_task/src/config/get.platform.dart';
 
 import '../../../config/constants.dart';
 import '../../../localization/loalization.dart';
@@ -15,26 +16,20 @@ import 'basic/theme.tile.dart';
 import 'basic/time.formate.tile.dart';
 
 class SettingsView extends StatelessWidget {
-  const SettingsView({super.key, this.initialIndex = 0});
+  const SettingsView({super.key});
 
   static const name = 'settings';
-  static const basicName = 'basic';
-  static const advancedName = 'advanced';
-
   static const label = 'Settings - $appName';
-
-  final int initialIndex;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text(t.settings)),
+      appBar: pt.isWeb ? null : AppBar(title: Text(t.settings)),
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.all(6.0),
           child: DefaultTabController(
             length: 2,
-            initialIndex: initialIndex,
             child: NestedScrollView(
               headerSliverBuilder: (_, __) => [
                 SliverToBoxAdapter(

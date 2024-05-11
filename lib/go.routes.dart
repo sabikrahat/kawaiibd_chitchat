@@ -1,5 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:kawaiibd_flutterfire_task/src/config/get.platform.dart';
 
 import 'app.routes.dart';
 import 'src/modules/auth/view/auth.dart';
@@ -46,18 +48,6 @@ final GoRouter goRouter = GoRouter(
       path: AppRoutes.settingsRoute,
       name: SettingsView.name,
       builder: (_, __) => const SettingsView(),
-      routes: <RouteBase>[
-        GoRoute(
-          path: AppRoutes.basicSettingsRoute.substring(1),
-          name: SettingsView.basicName,
-          builder: (_, __) => const SettingsView(),
-        ),
-        GoRoute(
-          path: AppRoutes.advancedSettingsRoute.substring(1),
-          name: SettingsView.advancedName,
-          builder: (_, __) => const SettingsView(initialIndex: 1),
-        ),
-      ],
     ),
     GoRoute(
       path: AppRoutes.maintenanceBreakRoute,
@@ -97,3 +87,9 @@ final GoRouter goRouter = GoRouter(
     return null;
   },
 );
+
+
+extension GoRouteExtension on BuildContext {
+  goPush<T>(String route) =>
+      pt.isWeb ? GoRouter.of(this).go(route) : GoRouter.of(this).push(route);
+}
