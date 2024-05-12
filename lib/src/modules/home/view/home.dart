@@ -50,18 +50,21 @@ class _Body extends ConsumerWidget {
           error: riverpodError,
           data: (snapshot) {
             final users = snapshot.docs.map((e) => e.data()).toList().removeOwn;
-            return ListView.builder(
-              itemCount: users.length,
-              itemBuilder: (_, index) {
-                final user = users[index];
-                return KListTile(
-                  title: Text(user.name, style: context.text.titleMedium),
-                  subtitle: Text(user.email, style: context.text.bodyMedium),
-                  leading: user.imageWidget,
-                  onTap: () =>
-                      context.goPush('${AppRoutes.messageRoute}/${user.uid}'),
-                );
-              },
+            return Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: ListView.builder(
+                itemCount: users.length,
+                itemBuilder: (_, index) {
+                  final user = users[index];
+                  return KListTile(
+                    title: Text(user.name, style: context.text.titleMedium),
+                    subtitle: Text(user.email, style: context.text.bodyMedium),
+                    leading: user.imageWidget,
+                    onTap: () =>
+                        context.goPush('${AppRoutes.messageRoute}/${user.uid}'),
+                  );
+                },
+              ),
             );
           },
         );

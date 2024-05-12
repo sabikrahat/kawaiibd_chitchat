@@ -1,61 +1,76 @@
+import 'dart:convert';
+
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+
+part 'message.ext.dart';
+part 'message.ext.frbs.dart';
+
 class MessageModel {
-  final String? id;
+  String? id;
   final String message;
   final String senderId;
   final String receiverId;
-  final DateTime timestamp;
+  final DateTime created;
 
   MessageModel({
-    required this.id,
+    this.id,
     required this.message,
     required this.senderId,
     required this.receiverId,
-    required this.timestamp,
+    required this.created,
   });
 
   factory MessageModel.fromJson(Map<String, dynamic> json) {
     return MessageModel(
-      id: json['id'],
-      message: json['message'],
-      senderId: json['senderId'],
-      receiverId: json['receiverId'],
-      timestamp: json['timestamp'],
+      id: json[_Json.id],
+      message: json[_Json.message],
+      senderId: json[_Json.senderId],
+      receiverId: json[_Json.receiverId],
+      created: json[_Json.created] == null
+          ? DateTime.now().toLocal()
+          : DateTime.parse(json[_Json.created]).toLocal(),
     );
   }
 
-  Map<String, dynamic> toJson() {
-    return {
-      'id': id,
-      'message': message,
-      'senderId': senderId,
-      'receiverId': receiverId,
-      'timestamp': timestamp,
-    };
-  }
+  factory MessageModel.fromRawJson(String str) =>
+      MessageModel.fromJson(json.decode(str));
+
+  static CollectionReference<MessageModel> get ref => FirebaseFirestore.instance
+      .collection('messages')
+      .withConverter<MessageModel>(
+        fromFirestore: (s, _) => MessageModel.fromJson(s.data()!)..id = s.id,
+        toFirestore: (s, _) => s.toJson(),
+      );
+
+  static CollectionReference<MessageModel> collectionRef(String s) => ref
+      .doc(createChatRoomId(s))
+      .collection('chats')
+      .withConverter<MessageModel>(
+        fromFirestore: (s, _) => MessageModel.fromJson(s.data()!)..id = s.id,
+        toFirestore: (s, _) => s.toJson(),
+      );
 
   @override
   String toString() {
-    return 'MessageModel(id: $id, message: $message, senderId: $senderId, receiverId: $receiverId, timestamp: $timestamp)';
+    return 'MessageModel(id: $id, message: $message, senderId: $senderId, receiverId: $receiverId, created: $created)';
   }
 
   @override
   bool operator ==(Object other) {
     if (identical(this, other)) return true;
 
-    return other is MessageModel &&
-        other.id == id &&
-        other.message == message &&
-        other.senderId == senderId &&
-        other.receiverId == receiverId &&
-        other.timestamp == timestamp;
+    return other is MessageModel && other.id == id;
   }
 
   @override
-  int get hashCode {
-    return id.hashCode ^
-        message.hashCode ^
-        senderId.hashCode ^
-        receiverId.hashCode ^
-        timestamp.hashCode;
-  }
+  int get hashCode => id.hashCode;
+}
+
+class _Json {
+  static const id = 'id';
+  static const message = 'message';
+  static const senderId = 'senderId';
+  static const receiverId = 'receiverId';
+  static const created = 'created';
 }

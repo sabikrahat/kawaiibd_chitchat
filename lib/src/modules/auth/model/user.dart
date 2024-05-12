@@ -53,6 +53,8 @@ class UserModel {
   //
   DocumentReference<UserModel> get ownDocRef => collectionRef.doc(uid);
   //
+  static DocumentReference<UserModel> singleDocRef(String uid) => collectionRef.doc(uid);
+  //
   static Stream<QuerySnapshot<UserModel>> docRef(String? email) => email == null
       ? collectionRef.snapshots()
       : collectionRef.where('email', isGreaterThanOrEqualTo: email).snapshots();

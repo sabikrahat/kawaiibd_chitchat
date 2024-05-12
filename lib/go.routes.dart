@@ -7,7 +7,7 @@ import 'src/config/get.platform.dart';
 import 'src/modules/auth/view/auth.dart';
 import 'src/modules/home/view/home.dart';
 import 'src/modules/maintenance.break/maintenance.break.dart';
-import 'src/modules/messaging/messaging.dart';
+import 'src/modules/messaging/view/messaging.dart';
 import 'src/modules/settings/view/setting.view.dart';
 import 'src/shared/page_not_found/page_not_found.dart';
 import 'src/utils/logger/logger_helper.dart';
