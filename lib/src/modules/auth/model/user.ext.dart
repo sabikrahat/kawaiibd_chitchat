@@ -57,14 +57,23 @@ extension FrBsUserExtension on UserModel {
                       height: 45.0,
                       width: 45.0,
                       url: avatar ?? '',
-                      loadingBuilder: (_, p) => const Padding(
-                        padding: EdgeInsets.all(2.0),
-                        child: SpinKitThreeBounce(
-                          color: kPrimaryColor,
-                          size: 15.0,
+                      loadingBuilder: (_, p) => Container(
+                        height: 45.0,
+                        width: 45.0,
+                        padding: const EdgeInsets.all(2.0),
+                        child: ClipRRect(
+                          borderRadius: borderRadius45,
+                          child: const SpinKitThreeBounce(
+                            color: kPrimaryColor,
+                            size: 15.0,
+                          ),
                         ),
                       ),
-                      errorBuilder: (_, __, ___) => const Icon(Icons.error),
+                      errorBuilder: (_, __, ___) => const SizedBox(
+                        height: 45.0,
+                        width: 45.0,
+                        child: Icon(Icons.error),
+                      ),
                       fit: BoxFit.cover,
                     ),
             ),

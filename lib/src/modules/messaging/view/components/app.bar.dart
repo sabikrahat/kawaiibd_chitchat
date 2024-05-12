@@ -2,11 +2,12 @@ import 'package:fast_cached_network_image/fast_cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
-import '../../../../../go.routes.dart';
-import '../../../../utils/extensions/extensions.dart';
+import '../../../../config/get.platform.dart';
 
+import '../../../../../go.routes.dart';
 import '../../../../config/app.config.dart';
 import '../../../../config/constants.dart';
+import '../../../../utils/extensions/extensions.dart';
 import '../../provider/messaging.dart';
 
 class KAppBar extends ConsumerWidget implements PreferredSizeWidget {
@@ -33,10 +34,12 @@ class KAppBar extends ConsumerWidget implements PreferredSizeWidget {
       ),
       child: Row(
         children: [
-          IconButton(
-            icon: const Icon(Icons.arrow_back),
-            onPressed: () => goRouter.pop(),
-          ),
+          pt.isNotWeb
+              ? IconButton(
+                  icon: const Icon(Icons.arrow_back),
+                  onPressed: () => goRouter.pop(),
+                )
+              : const SizedBox(width: 12),
           Expanded(
             child: ref.watch(singleUserStreamProvider(uid)).when(
                   loading: riverpodLoading,
@@ -98,7 +101,11 @@ class KAppBar extends ConsumerWidget implements PreferredSizeWidget {
                                         ),
                                       ),
                                       errorBuilder: (_, __, ___) =>
-                                          const Icon(Icons.error),
+                                          const SizedBox(
+                                        height: 38.0,
+                                        width: 38.0,
+                                        child: Icon(Icons.error),
+                                      ),
                                       fit: BoxFit.cover,
                                     ),
                             ),

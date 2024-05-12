@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import '../../../config/app.config.dart';
-import '../provider/messaging.dart';
-import 'components/app.bar.dart';
-import '../../../utils/extensions/extensions.dart';
 
+import '../../../config/app.config.dart';
 import '../../../config/constants.dart';
 import '../../../shared/page_not_found/page_not_found.dart';
+import '../../../utils/extensions/extensions.dart';
+import '../provider/messaging.dart';
+import 'components/app.bar.dart';
 import 'components/tile.dart';
 
 class MessagingView extends ConsumerWidget {
@@ -26,7 +26,7 @@ class MessagingView extends ConsumerWidget {
       child: Scaffold(
         appBar: KAppBar(uid),
         body: Padding(
-          padding: const EdgeInsets.all(6.0),
+          padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 12),
           child: ref.watch(messagingProvider(uid)).when(
                 loading: riverpodLoading,
                 error: riverpodError,
