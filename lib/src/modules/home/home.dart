@@ -1,11 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:kawaiibd_flutterfire_task/app.routes.dart';
 import 'package:kawaiibd_flutterfire_task/go.routes.dart';
+import 'package:kawaiibd_flutterfire_task/src/modules/auth/model/user.dart';
+import 'package:kawaiibd_flutterfire_task/src/utils/extensions/extensions.dart';
 
+import '../../config/app.config.dart';
 import '../../config/constants.dart';
-import '../../shared/show_toast/awsome.snackbar/awesome.snackbar.dart';
-import '../../shared/show_toast/awsome.snackbar/show.awesome.snackbar.dart';
-import '../../shared/show_toast/timer.snackbar/show.timer.snackbar.dart';
+import '../../shared/k_list_tile.dart/k_list_tile.dart';
+import '../../utils/themes/themes.dart';
+import 'provider/home.dart';
 
 class HomeView extends StatelessWidget {
   const HomeView({super.key});
@@ -17,41 +21,39 @@ class HomeView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: const Text(appName)),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: mainCenter,
-          children: [
-            const Text('Hello World!'),
-            const SizedBox(height: 15),
-            const Text('Welcome to $appName'),
-            const SizedBox(height: 15),
-            ElevatedButton(
-              onPressed: () => context.goPush(
-                  '${AppRoutes.profileRoute}/${DateTime.now().millisecondsSinceEpoch}'),
-              child: const Text('Go to Profile'),
-            ),
-            const SizedBox(height: 15),
-            ElevatedButton(
-              onPressed: () => showTimerSnackbar('Just for testing'),
-              child: const Text('Show Timer Snacbar'),
-            ),
-            const SizedBox(height: 15),
-            ElevatedButton(
-              onPressed: () => showAwesomeSnackbar(
-                'Just for testing!',
-                MessageType.success,
-              ),
-              child: const Text('Show Awesome Snacbar'),
-            ),
-          ],
-        ),
-      ),
       floatingActionButton: FloatingActionButton.small(
-        onPressed: () {
-          context.goPush(AppRoutes.settingsRoute);
-        },
-        child: const Icon(Icons.settings),
+        onPressed: () => context.goPush(AppRoutes.settingsRoute),
+        child: const Icon(Icons.settings, color: white),
       ),
+      body: const _Body(),
     );
+  }
+}
+
+class _Body extends ConsumerWidget {
+  const _Body();
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    return ref.watch(usersStreamProvider).when(
+          loading: riverpodLoading,
+          error: riverpodError,
+          data: (snapshot) {
+            final users = snapshot.docs.map((e) => e.data()).toList();
+            return ListView.builder(
+              itemCount: users.length,
+              itemBuilder: (_, index) {
+                final user = users[index];
+                return KListTile(
+                  title: Text(user.name, style: context.text.titleMedium),
+                  subtitle: Text(user.email, style: context.text.bodyMedium),
+                  leading: user.imageWidget,
+                  onTap: () =>
+                      context.goPush('${AppRoutes.profileRoute}/${user.uid}'),
+                );
+              },
+            );
+          },
+        );
   }
 }

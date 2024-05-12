@@ -73,16 +73,13 @@ class _Tile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(
-        color: selected == true
-            ? context.theme.primaryColor.withOpacity(0.2)
-            : null,
-        borderRadius: borderRadius15,
-      ),
+    return Card(
+      color:
+          selected == true ? context.theme.primaryColor.withOpacity(0.2) : null,
+      shape: roundedRectangleBorder10,
       child: Padding(
         padding: padding ??
-            const EdgeInsets.symmetric(horizontal: 12.0, vertical: 3.0),
+            const EdgeInsets.symmetric(horizontal: 15.0, vertical: 5.0),
         child: Row(
           mainAxisAlignment: mainCenter,
           children: [
@@ -96,7 +93,7 @@ class _Tile extends StatelessWidget {
                 children: [
                   title ?? const SizedBox.shrink(),
                   if (subtitle != null)
-                    SizedBox(height: paddingBetweenTitleAndSubtitle ?? 2.0),
+                    SizedBox(height: paddingBetweenTitleAndSubtitle ?? 0.0),
                   subtitle ?? const SizedBox.shrink(),
                 ],
               ),

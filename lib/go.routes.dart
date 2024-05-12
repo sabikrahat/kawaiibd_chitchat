@@ -41,8 +41,11 @@ final GoRouter goRouter = GoRouter(
     GoRoute(
       path: '${AppRoutes.profileRoute}/:uid',
       name: ProfileView.name,
-      builder: (_, state) =>
-          ProfileView(uid: state.pathParameters['uid'] ?? '724282'),
+      builder: (_, state) => ProfileView(
+        uid: state.pathParameters['uid'] ??
+            FirebaseAuth.instance.currentUser?.uid ??
+            'no-uid-found',
+      ),
     ),
     GoRoute(
       path: AppRoutes.settingsRoute,
@@ -87,7 +90,6 @@ final GoRouter goRouter = GoRouter(
     return null;
   },
 );
-
 
 extension GoRouteExtension on BuildContext {
   goPush<T>(String route) =>

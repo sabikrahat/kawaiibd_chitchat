@@ -44,6 +44,13 @@ class UserModel {
   factory UserModel.fromRawJson(String str) =>
       UserModel.fromJson(json.decode(str));
 
+  
+  static CollectionReference<UserModel> get collectionRef =>
+      FirebaseFirestore.instance.collection('users').withConverter<UserModel>(
+            fromFirestore: (s, _) => UserModel.fromJson(s.data()!)..uid = s.id,
+            toFirestore: (s, _) => s.toJson(),
+          );
+
   @override
   String toString() =>
       'UserModel(uid: $uid, name: $name, email: $email, avatar: $avatar, token: $token, created: $created)';
