@@ -2,12 +2,12 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:kawaiibd_flutterfire_task/src/modules/messaging/model/message.dart';
-import 'package:kawaiibd_flutterfire_task/src/utils/extensions/extensions.dart';
+import '../model/message.dart';
+import '../../../utils/extensions/extensions.dart';
 
 import '../../auth/model/user.dart';
 
-final userStreamProvider = StreamProvider.family(
+final singleUserStreamProvider = StreamProvider.family(
     (_, String uid) => UserModel.singleDocRef(uid).snapshots());
 
 typedef MessagingNotifier = StreamNotifierProviderFamily<MessagingProvider,
@@ -21,13 +21,18 @@ class MessagingProvider
   @override
   Stream<QuerySnapshot<MessageModel>> build(String arg) {
     listener();
-    return MessageModel.collectionRef(arg).orderBy('created', descending: true).snapshots();
+    return MessageModel.collectionRef(arg)
+        .orderBy('created', descending: true)
+        .snapshots();
   }
 
   bool get isSendable => cntrlr.text.trim().isNotNullOrEmpty;
 
   String get senderId =>
       FirebaseAuth.instance.currentUser?.uid ?? 'no-uid-found';
+
+  UserModel? get receiver => ref.watch(
+      singleUserStreamProvider(receiverId).select((v) => v.value?.data()));
 
   String get receiverId => arg;
 

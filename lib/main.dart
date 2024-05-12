@@ -4,13 +4,13 @@ import 'package:flutter/services.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
-import 'src/firebase/init.dart';
 import 'package:url_strategy/url_strategy.dart';
 
 import 'src/app.dart' show App;
 import 'src/config/get.platform.dart';
 import 'src/db/db.dart' show initAppDatum, openDB;
 import 'src/db/paths.dart';
+import 'src/firebase/init.dart';
 import 'src/utils/themes/themes.dart';
 
 const isProduction = false;
