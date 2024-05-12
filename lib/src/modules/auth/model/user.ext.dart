@@ -20,7 +20,7 @@ extension FrBsUserExtension on UserModel {
   }
 
   Map<String, dynamic> toJson() => {
-        _Json.id: uid,
+        _Json.uid: uid,
         _Json.name: name,
         _Json.email: email,
         _Json.avatar: avatar,

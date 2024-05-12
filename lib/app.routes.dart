@@ -8,7 +8,7 @@ class AppRoutes {
   static const String authRoute = '/auth';
   static const String signinRoute = '/signin';
   static const String signupRoute = '/signup';
-  static const String profileRoute = '/profile';
+  static const String messageRoute = '/message';
   static const String settingsRoute = '/settings';
   static const String basicSettingsRoute = '/basic';
   static const String advancedSettingsRoute = '/advanced';
@@ -19,7 +19,7 @@ class AppRoutes {
     authRoute,
     signinRoute,
     signupRoute,
-    profileRoute,
+    messageRoute,
     settingsRoute,
     basicSettingsRoute,
     advancedSettingsRoute,

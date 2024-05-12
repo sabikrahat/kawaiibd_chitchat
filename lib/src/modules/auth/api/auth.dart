@@ -22,6 +22,7 @@ Future<void> frbsSignup(BuildContext context, AuthenticationPd notifier) async {
     )
         .then((uc) async {
       await UserModel(
+        uid: uc.user?.uid,
         name: notifier.nameCntrlr.text,
         email: notifier.emailCntrlr.text,
         avatar: await uploadImageToFirebae(notifier.image),

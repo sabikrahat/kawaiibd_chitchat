@@ -22,7 +22,7 @@ import 'config/screen_enlarge_warning.dart';
 import 'config/size.dart';
 import 'localization/loalization.dart'
     show localizationsDelegates, onGenerateTitle, t;
-import 'modules/home/home.dart';
+import 'modules/home/view/home.dart';
 import 'modules/settings/provider/fonts.provider.dart';
 import 'modules/settings/provider/locale.provider.dart';
 import 'modules/settings/provider/performance.overlay.provider.dart';

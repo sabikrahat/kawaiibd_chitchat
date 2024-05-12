@@ -1,13 +1,13 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:kawaiibd_flutterfire_task/src/config/get.platform.dart';
 
 import 'app.routes.dart';
+import 'src/config/get.platform.dart';
 import 'src/modules/auth/view/auth.dart';
-import 'src/modules/home/home.dart';
+import 'src/modules/home/view/home.dart';
 import 'src/modules/maintenance.break/maintenance.break.dart';
-import 'src/modules/profile/profile.dart';
+import 'src/modules/messaging/messaging.dart';
 import 'src/modules/settings/view/setting.view.dart';
 import 'src/shared/page_not_found/page_not_found.dart';
 import 'src/utils/logger/logger_helper.dart';
@@ -39,9 +39,9 @@ final GoRouter goRouter = GoRouter(
       ],
     ),
     GoRoute(
-      path: '${AppRoutes.profileRoute}/:uid',
-      name: ProfileView.name,
-      builder: (_, state) => ProfileView(
+      path: '${AppRoutes.messageRoute}/:uid',
+      name: MessagingView.name,
+      builder: (_, state) => MessagingView(
         uid: state.pathParameters['uid'] ??
             FirebaseAuth.instance.currentUser?.uid ??
             'no-uid-found',

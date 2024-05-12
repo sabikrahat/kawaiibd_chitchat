@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import '../../../../config/constants.dart';
 
+import '../../../../config/constants.dart';
 import '../../../../shared/image.widget/image.widget.dart';
 import '../../../../shared/image_process/single/pick.photo.dart';
 import '../../../../utils/extensions/extensions.dart';
