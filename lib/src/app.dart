@@ -1,12 +1,5 @@
 import 'package:flutter/material.dart'
-    show
-        BuildContext,
-        Key,
-        MaterialApp,
-        MediaQuery,
-        TextScaler,
-        ThemeData,
-        Widget;
+    show BuildContext, GlobalKey, Key, MaterialApp, MediaQuery, NavigatorState, TextScaler, ThemeData, Widget;
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart'
     show AppLocalizations;
@@ -31,6 +24,8 @@ import 'shared/internet/view/internet.dart';
 import 'shared/show_toast/awsome.snackbar/show.awesome.snackbar.dart';
 import 'utils/extensions/extensions.dart';
 import 'utils/logger/logger_helper.dart';
+
+final navigatorKey = GlobalKey<NavigatorState>();
 
 class App extends ConsumerWidget {
   const App({super.key = const Key(appName)});

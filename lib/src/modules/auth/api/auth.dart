@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
+import 'package:kawaiibd_flutterfire_task/src/firebase/init.dart';
 import '../model/user.dart';
 
 import '../../../../go.routes.dart';
@@ -26,6 +27,7 @@ Future<void> frbsSignup(BuildContext context, AuthenticationPd notifier) async {
         name: notifier.nameCntrlr.text,
         email: notifier.emailCntrlr.text,
         avatar: await uploadImageToFirebae(notifier.image),
+        token: await FirebaseUtils().getDeviceToken(),
         created: DateTime.now().toUtc(),
       ).saveFrBs();
       EasyLoading.dismiss();
@@ -52,7 +54,10 @@ Future<void> frbsSignin(BuildContext context, AuthenticationPd notifier) async {
       email: notifier.emailCntrlr.text,
       password: notifier.pwdCntrlr.text,
     )
-        .then((uc) {
+        .then((uc) async {
+      final user = (await UserModel.ownDocRef(uc.user?.uid).get()).data();
+      user?.token = await FirebaseUtils().getDeviceToken();
+      await user?.saveFrBs();
       EasyLoading.dismiss();
       goRouter.refresh();
       notifier.clear();

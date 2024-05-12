@@ -14,12 +14,15 @@ dependencies:
   connectivity_plus: ^6.0.3
   fast_cached_network_image: ^1.2.9
   file_picker: ^8.0.3
+  firebase_analytics: ^10.10.5
   firebase_auth: ^4.19.5
   firebase_core: ^2.31.0
+  firebase_messaging: ^14.9.2
   firebase_storage: ^11.7.5
   flutter:
     sdk: flutter
   flutter_easyloading: ^3.0.5
+  flutter_local_notifications: ^17.1.2
   flutter_localizations:
     sdk: flutter
   flutter_riverpod: ^3.0.0-dev.3
@@ -30,6 +33,7 @@ dependencies:
   hive: ^2.2.3
   hive_flutter: ^1.1.0
   hive_ui: ^1.0.14
+  http: ^1.2.1
   image_cropper: ^6.0.0
   image_picker: ^1.1.1
   intl: ^0.18.1
@@ -67,7 +71,6 @@ flutter_launcher_icons:
     generate: true
     image_path: "assets/icons/app-icon-1024x1024.png"
   # command: dart run flutter_launcher_icons:main
-
 flutter_native_splash:
   color: "#000000"
   image: "assets/icons/splash-icon-384x384.png"

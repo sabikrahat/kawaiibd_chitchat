@@ -51,7 +51,7 @@ class UserModel {
             toFirestore: (s, _) => s.toJson(),
           );
   //
-  DocumentReference<UserModel> get ownDocRef => collectionRef.doc(uid);
+  static DocumentReference<UserModel> ownDocRef(String? uid) => collectionRef.doc(uid!);
   //
   static DocumentReference<UserModel> singleDocRef(String uid) => collectionRef.doc(uid);
   //
