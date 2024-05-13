@@ -84,6 +84,9 @@ class _Body extends ConsumerWidget {
                           chat.isMeSender
                               ? 'You: ${chat.lastMessage} '
                               : chat.lastMessage,
+                          maxLines: 2,
+                          overflow: TextOverflow.ellipsis,
+                          textAlign: TextAlign.justify,
                           style: context.text.bodyMedium!.copyWith(
                               fontWeight:
                                   chat.isMeSender ? null : FontWeight.bold)),
