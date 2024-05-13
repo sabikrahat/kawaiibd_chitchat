@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:kawaiibd_flutterfire_task/src/config/get.platform.dart';
 
 import '../../../firebase/fcm.utils.dart';
 import '../../../utils/extensions/extensions.dart';
@@ -33,9 +34,6 @@ class MessagingProvider
   UserModel? get receiver => ref.watch(
       singleUserStreamProvider(receiverId).select((v) => v.value?.data()));
 
-  UserModel? get sender => ref
-      .watch(singleUserStreamProvider(senderId).select((v) => v.value?.data()));
-
   String get receiverId => arg;
 
   listener() => cntrlr.addListener(() => ref.notifyListeners());
@@ -50,9 +48,12 @@ class MessagingProvider
         created: DateTime.now().toUtc(),
       ).saveFrBs();
       cntrlr.clear();
+      if (pt.isNotMobile || receiver?.token == null) return;
+      final s =
+          (await ref.watch(singleUserStreamProvider(senderId).future)).data();
       await FcmUtils().sendNotification(
         token: receiver?.token,
-        title: receiver?.name ?? 'New Message',
+        title: s?.name ?? 'New Message',
         body: message,
         uid: senderId,
       );
