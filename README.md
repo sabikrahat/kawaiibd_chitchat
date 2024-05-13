@@ -1,30 +1,69 @@
-# kawaiibd_flutterfire_task
+# Kawaii Advanced Technology & Solution Ltd.
+## Flutter & Firebase Developer Recruitment Assessment
 
-A new Flutter project.
+Developing a chat application using Flutter and Firebase. The application have the following features:
 
-## Getting Started
+- Chat functionality
+- Notifications
+- Login and Logout features
 
-This project is a starting point for a Flutter application that follows the
-[simple app state management
-tutorial](https://flutter.dev/docs/development/data-and-backend/state-mgmt/simple).
+Packages:
 
-For help getting started with Flutter development, view the
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+- flutter_riverpod
+- flutter_hooks
+- go_router
 
-## Assets
+Extra Features:
 
-The `assets` directory houses images, fonts, and any other files you want to
-include with your application.
+- Show the network status.
+- Show the loading indicator while fetching data from the Firebase.
+- Api error handling.
+- Show the error message if the API fails to fetch data.
+- Dark and light theme support.
+- Change the language (English and Bengali).
+- Change the Date and Time format.
+- Change font style.
+- View the local database data.
+- Clear the local database data.
+- Show the app performance graph.
 
-The `assets/images` directory contains [resolution-aware
-images](https://flutter.dev/docs/development/ui/assets-and-images#resolution-aware).
 
-## Localization
+```Note: Flutter push notification (FCM) is only available in real mobile devices.```
 
-This project generates localized messages based on arb files found in
-the `lib/src/localization` directory.
+## Live Preview 
 
-To support additional languages, please visit the tutorial on
-[Internationalizing Flutter
-apps](https://flutter.dev/docs/development/accessibility-and-localization/internationalization)
+[Preview Website](https://kawaiibd-chitchat.web.app/) Click on the link to see the live preview of the application in multiple devices.
+
+[Download APK](https://github.com/sabikrahat/kawaiibd_chitchat/releases) Click on the latest release and download the APK file.
+
+
+## UI Design
+
+<table>
+  <tr>
+    <td><img src="ui/1.png" width=250 height=480></td>
+    <td><img src="ui/2.png" width=250 height=480></td>
+    <td><img src="ui/3.png" width=250 height=480></td>
+  </tr>
+  <tr>
+    <td><img src="ui/4.png" width=250 height=480></td>
+    <td><img src="ui/5.png" width=250 height=480></td>
+    <td><img src="ui/6.png" width=250 height=480></td>
+  </tr>
+  <tr>
+    <td><img src="ui/7.png" width=250 height=540></td>
+    <td><img src="ui/8.png" width=250 height=540></td>
+    <td><img src="ui/9.png" width=250 height=540></td>
+  </tr>
+    <tr>
+        <td><img src="ui/10.png" width=250 height=480></td>
+        <td><img src="ui/11.png" width=250 height=480></td>
+        <td><img src="ui/12.png" width=250 height=480></td>
+    </tr>
+    <tr>
+        <td><img src="ui/13.png" width=250 height=480></td>
+        <td><img src="ui/14.png" width=250 height=480></td>
+    </tr>
+ </table>
+
+# If you have any questions, feel free to ask me.

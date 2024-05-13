@@ -27,12 +27,12 @@ class HomeView extends StatefulWidget {
 }
 
 class _HomeViewState extends State<HomeView> {
-
   @override
   void initState() {
     super.initState();
     if (pt.isMobile) FcmUtils().init(context);
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -84,6 +84,9 @@ class _Body extends ConsumerWidget {
                           chat.isMeSender
                               ? 'You: ${chat.lastMessage} '
                               : chat.lastMessage,
+                          maxLines: 2,
+                          overflow: TextOverflow.ellipsis,
+                          textAlign: TextAlign.justify,
                           style: context.text.bodyMedium!.copyWith(
                               fontWeight:
                                   chat.isMeSender ? null : FontWeight.bold)),
