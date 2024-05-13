@@ -11,6 +11,7 @@ import 'package:kawaiibd_flutterfire_task/src/config/get.platform.dart';
 
 import '../../app.routes.dart';
 import '../../go.routes.dart';
+import '../config/get.platform.dart';
 import '../utils/logger/logger_helper.dart';
 import 'init.dart';
 

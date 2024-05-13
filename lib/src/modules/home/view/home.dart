@@ -6,6 +6,7 @@ import '../../../../app.routes.dart';
 import '../../../../go.routes.dart';
 import '../../../config/app.config.dart';
 import '../../../config/constants.dart';
+import '../../../config/get.platform.dart';
 import '../../../firebase/fcm.utils.dart';
 import '../../../shared/k_list_tile.dart/k_list_tile.dart';
 import '../../../utils/extensions/extensions.dart';
