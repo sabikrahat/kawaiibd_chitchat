@@ -5,6 +5,7 @@ import '../../../config/app.config.dart';
 import '../../../config/constants.dart';
 import '../../../shared/page_not_found/page_not_found.dart';
 import '../../../utils/extensions/extensions.dart';
+import '../../home/view/components/drawer.dart';
 import '../provider/messaging.dart';
 import 'components/app.bar.dart';
 import 'components/tile.dart';
@@ -25,6 +26,7 @@ class MessagingView extends ConsumerWidget {
     return SafeArea(
       child: Scaffold(
         appBar: KAppBar(uid),
+        endDrawer: KDrawer(uid: uid),
         body: Padding(
           padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 12),
           child: ref.watch(messagingProvider(uid)).when(

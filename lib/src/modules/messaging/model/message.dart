@@ -2,7 +2,7 @@ import 'dart:convert';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:kawaiibd_flutterfire_task/src/modules/messaging/model/chat.room.dart';
+import 'chat.room.dart';
 
 part 'message.ext.dart';
 part 'message.ext.frbs.dart';

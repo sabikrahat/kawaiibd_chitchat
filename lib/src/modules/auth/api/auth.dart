@@ -3,7 +3,7 @@ import 'dart:io';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
-import 'package:kawaiibd_flutterfire_task/src/firebase/fcm.utils.dart';
+import '../../../firebase/fcm.utils.dart';
 
 import '../../../../go.routes.dart';
 import '../../../firebase/upload.to.firebase.storage.dart';

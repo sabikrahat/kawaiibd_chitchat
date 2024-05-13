@@ -66,7 +66,7 @@ class KAboutDialog extends StatelessWidget {
               crossAxisAlignment: crossStart,
               children: [
                 Text(
-                  'Smiling Tailor',
+                  appName,
                   style: context.text.titleLarge,
                 ),
                 const SizedBox(height: 2),
@@ -78,7 +78,7 @@ class KAboutDialog extends StatelessWidget {
                 ),
                 const SizedBox(height: 5),
                 Text(
-                  '© 2023 Smiling Tailor (A product of Rahat Corp.)',
+                  '© 2024 $appName\n(A product of Rahat Corp.)',
                   style: context.text.labelMedium!.copyWith(
                     fontWeight: FontWeight.normal,
                   ),
@@ -93,14 +93,14 @@ class KAboutDialog extends StatelessWidget {
             mainAxisSize: mainMin,
             children: [
               Text(
-                '\nWelcome to our tailor-centric Custom Business Management System, where the dynamic fusion of ERP (Enterprise Resource Planning) and CRM (Customer Relationship Management) empowers your tailoring business like never before. Our feature-rich and user-friendly application has been meticulously crafted to streamline your operations effortlessly. With our cutting-edge system, you can easily manage and monitor essential elements of your business, including managers, vendors, inventory, and employees. Effortlessly process orders and witness the seamless flow of transaction history in real-time, ensuring airtight organization, enhanced efficiency, and complete control over your business processes. We take pride in presenting this exceptional software solution, developed in-house by our skilled team at Algoramming. Our commitment to quality and reliability ensures that every aspect of our system is fine-tuned to meet the specific needs of your tailoring business, setting you on a path to success with unparalleled ease.',
+                '\nWelcome to the $appName app. This app is developed by Sabik Rahat for testing purposes. This app is not for commercial use. If you have any questions or suggestions, please contact me.',
                 style: context.text.labelMedium,
                 textAlign: TextAlign.justify,
               ),
               Align(
                 alignment: Alignment.centerRight,
                 child: Text(
-                  '\n- Algoramming.',
+                  '\n- Md. Sabik Alam Rahat.',
                   style: context.text.labelMedium!.copyWith(
                     color: context.theme.primaryColor,
                   ),

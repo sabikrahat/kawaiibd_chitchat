@@ -7,9 +7,9 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:http/http.dart' as http;
-import 'package:kawaiibd_flutterfire_task/app.routes.dart';
-import 'package:kawaiibd_flutterfire_task/go.routes.dart';
-import 'package:kawaiibd_flutterfire_task/src/firebase/init.dart';
+import '../../app.routes.dart';
+import '../../go.routes.dart';
+import 'init.dart';
 
 import '../utils/logger/logger_helper.dart';
 

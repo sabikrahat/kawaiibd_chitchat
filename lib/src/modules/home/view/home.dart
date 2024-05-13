@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:kawaiibd_flutterfire_task/src/modules/messaging/model/chat.room.dart';
+import '../../messaging/model/chat.room.dart';
 
 import '../../../../app.routes.dart';
 import '../../../../go.routes.dart';
@@ -11,6 +11,7 @@ import '../../../utils/extensions/extensions.dart';
 import '../../../utils/themes/themes.dart';
 import '../../auth/model/user.dart';
 import '../provider/home.dart';
+import 'components/drawer.dart';
 import 'components/search.delegate.dart';
 
 class HomeView extends StatelessWidget {
@@ -31,8 +32,10 @@ class HomeView extends StatelessWidget {
           ),
         ],
       ),
+      drawer: const KDrawer(),
       floatingActionButton: FloatingActionButton.small(
-        onPressed: () => showSearch(context: context, delegate: SearchUsers()),
+        onPressed: () async =>
+            await showSearch(context: context, delegate: SearchUsers()),
         child: const Icon(Icons.add, color: white),
       ),
       body: const _Body(),

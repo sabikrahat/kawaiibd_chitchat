@@ -1,7 +1,6 @@
-import 'package:fast_cached_network_image/fast_cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:flutter_spinkit/flutter_spinkit.dart';
+import '../../../auth/model/user.dart';
 
 import '../../../../../go.routes.dart';
 import '../../../../config/app.config.dart';
@@ -50,59 +49,13 @@ class KAppBar extends ConsumerWidget implements PreferredSizeWidget {
                       mainAxisAlignment: mainStart,
                       crossAxisAlignment: crossCenter,
                       children: [
-                        if (user != null)
-                          Container(
-                            padding: const EdgeInsets.all(1.0),
-                            decoration: BoxDecoration(
-                              color: Colors.white,
-                              shape: BoxShape.circle,
-                              border: Border.all(
-                                  color: context.theme.primaryColor,
-                                  width: 1.5),
-                            ),
-                            child: ClipRRect(
-                              borderRadius: borderRadius45,
-                              child: user.avatar == null
-                                  ? Container(
-                                      height: 38.0,
-                                      width: 38.0,
-                                      color: context.theme.primaryColor
-                                          .withOpacity(0.4),
-                                      child: FittedBox(
-                                        child: Text(
-                                          '${user.name.split(' ').first.split('').first}${user.name.split(' ').last.split('').first}',
-                                          style: TextStyle(
-                                              color:
-                                                  context.theme.primaryColor),
-                                        ),
-                                      ),
-                                    )
-                                  : FastCachedImage(
-                                      height: 38.0,
-                                      width: 38.0,
-                                      url: user.avatar ?? '',
-                                      loadingBuilder: (_, p) => Container(
-                                        height: 38.0,
-                                        width: 38.0,
-                                        padding: const EdgeInsets.all(2.0),
-                                        child: ClipRRect(
-                                          borderRadius: borderRadius45,
-                                          child: SpinKitThreeBounce(
-                                            color: context.theme.primaryColor,
-                                            size: 15.0,
-                                          ),
-                                        ),
-                                      ),
-                                      errorBuilder: (_, __, ___) =>
-                                          const SizedBox(
-                                        height: 38.0,
-                                        width: 38.0,
-                                        child: Icon(Icons.error),
-                                      ),
-                                      fit: BoxFit.cover,
-                                    ),
-                            ),
-                          ),
+                        Column(
+                          mainAxisAlignment: mainCenter,
+                          children: [
+                            user?.imageWidgetWithSize(38) ??
+                                const SizedBox.shrink(),
+                          ],
+                        ),
                         const SizedBox(width: 10.0),
                         Expanded(
                           child: Column(
@@ -121,48 +74,13 @@ class KAppBar extends ConsumerWidget implements PreferredSizeWidget {
                   },
                 ),
           ),
+          IconButton(
+            onPressed: () => Scaffold.of(context).openEndDrawer(),
+            icon: const Icon(Icons.info_outline),
+          )
         ],
       ),
     );
-    // return Padding(
-    //   padding: const EdgeInsets.all(10.0),
-    //   child: Row(
-    //     mainAxisAlignment: mainSpaceBetween,
-    //     children: [
-    //       InkWell(
-    //         borderRadius: borderRadius45,
-    //         onTap: () => Scaffold.of(context).openDrawer(),
-    //         child: Card(
-    //           shape: roundedRectangleBorder45,
-    //           child: Padding(
-    //             padding: const EdgeInsets.symmetric(
-    //                 horizontal: 10.0, vertical: 15.0),
-    //             child: SvgPicture.asset(
-    //               'assets/svgs/menu.svg',
-    //             ),
-    //           ),
-    //         ),
-    //       ),
-    //       SvgPicture.asset(
-    //         'assets/svgs/appbar-icon.svg',
-    //       ),
-    //       InkWell(
-    //         borderRadius: borderRadius45,
-    //         onTap: () async =>
-    //             await context.fadePush(const CustomerNotificationView()),
-    //         child: Card(
-    //           shape: roundedRectangleBorder45,
-    //           child: Padding(
-    //             padding: const EdgeInsets.all(13.0),
-    //             child: SvgPicture.asset(
-    //               'assets/svgs/notification.svg',
-    //             ),
-    //           ),
-    //         ),
-    //       ),
-    //     ],
-    //   ),
-    // );
   }
 
   @override
