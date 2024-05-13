@@ -4,7 +4,6 @@ on:
   push:
     branches:
       - main
-      # - release
 
 jobs:
   build:
@@ -55,14 +54,14 @@ jobs:
       - run: flutter build appbundle
 
       # Flutter ios ipa build command.
-      - run: |
-          flutter build ios --no-codesign
-          cd build/ios/iphoneos
-          mkdir Payload
-          cd Payload
-          ln -s ../Runner.app
-          cd ..
-          zip -r app.ipa Payload
+      # - run: |
+      #     flutter build ios --no-codesign
+      #     cd build/ios/iphoneos
+      #     mkdir Payload
+      #     cd Payload
+      #     ln -s ../Runner.app
+      #     cd ..
+      #     zip -r app.ipa Payload
 
       # Flutter web release command.
       # - run: flutter build web --web-renderer html --release
@@ -82,6 +81,7 @@ jobs:
       - name: Push to Release
         uses: ncipollo/release-action@v1
         with:
-          artifacts: "build/app/outputs/flutter-apk/*,build/ios/iphoneos/app.ipa,build/app/outputs/bundle/release/app-release.aab"
+          # artifacts: "build/app/outputs/flutter-apk/*,build/ios/iphoneos/app.ipa,build/app/outputs/bundle/release/app-release.aab"
+          artifacts: "build/app/outputs/flutter-apk/*,build/app/outputs/bundle/release/app-release.aab"
           tag: ${{env.my_tag}}
           token: ${{env.my_secret}}
