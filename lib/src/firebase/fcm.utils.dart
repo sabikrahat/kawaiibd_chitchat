@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:math';
 
 import 'package:app_settings/app_settings.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
@@ -6,7 +7,6 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:http/http.dart' as http;
-import 'package:kawaiibd_flutterfire_task/src/utils/extensions/extensions.dart';
 
 import '../../app.routes.dart';
 import '../../go.routes.dart';
@@ -49,7 +49,7 @@ class FcmUtils {
     await _localNotificationPlugin.initialize(
       initialize,
       onDidReceiveNotificationResponse: (payload) {
-        log.i('>> Payload: $payload');
+        log.i('>> Rahat Rahat Response Payload: ${payload.payload}');
         handleMessage(context, message);
       },
     );
@@ -67,7 +67,7 @@ class FcmUtils {
     requestNotificationPermission();
     getDeviceToken().then((token) => log.i('>> Device Token: $token'));
     FirebaseMessaging.onMessage.listen((RemoteMessage message) {
-      log.i('>> Foreground Message: ${message.messageId}');
+      log.i('>> Rahar Rahat Foreground Message: ${message.messageId}');
       log.i('>> Title: ${message.notification?.title}');
       log.i('>> Body: ${message.notification?.body}');
       log.i('>> Data: ${message.data}');
@@ -80,7 +80,7 @@ class FcmUtils {
 
   void showNotification(RemoteMessage message) async {
     final androidChannel = AndroidNotificationChannel(
-      message.data['notificationId'].toString(),
+      Random.secure().nextInt(1000).toString(),
       'High Importance Notification',
       importance: Importance.max,
     );
@@ -88,10 +88,10 @@ class FcmUtils {
       androidChannel.id,
       androidChannel.name,
       channelDescription: 'kawaiibd-chitchat-channel',
-      importance: Importance.high,
+      importance: Importance.max,
       priority: Priority.high,
       ticker: 'ticker',
-      icon: '@mipmap/ic_launcher',
+      icon: '@drawable/ic_notification',
     );
     //
     const iosDetails = DarwinNotificationDetails(
@@ -107,7 +107,7 @@ class FcmUtils {
     //
     Future.delayed(const Duration(seconds: 0), () {
       _localNotificationPlugin.show(
-        message.data['notificationId'].toString().toInt ?? 0,
+        0,
         message.notification?.title,
         message.notification?.body,
         notificationDetails,
@@ -119,7 +119,7 @@ class FcmUtils {
     // when app is terminated
     final message = await _firebaseMessaging.getInitialMessage();
     if (message != null) {
-      log.i('>> Initial Message: ${message.messageId}');
+      log.i('>> Rahat Rahat Initial Message: ${message.messageId}');
       log.i('>> Title: ${message.notification?.title}');
       log.i('>> Body: ${message.notification?.body}');
       log.i('>> Data: ${message.data}');
@@ -128,7 +128,7 @@ class FcmUtils {
     }
     // when app is in background
     FirebaseMessaging.onMessageOpenedApp.listen((RemoteMessage message) {
-      log.i('>> Opened App Message: ${message.messageId}');
+      log.i('>> Rahar Rahat Opened App Message: ${message.messageId}');
       log.i('>> Title: ${message.notification?.title}');
       log.i('>> Body: ${message.notification?.body}');
       log.i('>> Data: ${message.data}');
@@ -138,7 +138,7 @@ class FcmUtils {
   }
 
   void handleMessage(BuildContext context, RemoteMessage message) {
-    log.i('>> Message: ${message.messageId}');
+    log.i('>> Raht Rahat Handle Message: ${message.messageId}');
     log.i('>> Title: ${message.notification?.title}');
     log.i('>> Body: ${message.notification?.body}');
     log.i('>> Data: ${message.data}');
@@ -152,7 +152,6 @@ class FcmUtils {
     required String title,
     required String body,
     required String? uid,
-    required int notificationId,
   }) async {
     if (token == null) {
       log.e('>> Error: Token is null');
@@ -173,7 +172,7 @@ class FcmUtils {
             'title': title,
             'body': body,
           },
-          'data': {'uid': uid, 'notificationId': notificationId},
+          'data': {'uid': uid},
           'to': token,
         }),
       );
@@ -188,11 +187,10 @@ class FcmUtils {
 @pragma('vm:entry-point')
 Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
   await FirebaseUtils.init();
-  log.i('>> Background Message: ${message.messageId}');
+  log.i('>> Rahat Rahat Background Message: ${message.messageId}');
   log.i('>> Title: ${message.notification?.title}');
   log.i('>> Body: ${message.notification?.body}');
   log.i('>> Data: ${message.data}');
-  
 }
 
 extension CustomExt on NotificationSettings {

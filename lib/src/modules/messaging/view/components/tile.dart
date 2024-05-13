@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import '../../../settings/model/settings.model.dart';
-import '../../../../utils/extensions/extensions.dart';
 
 import '../../../../config/constants.dart';
 import '../../../../db/db.dart';
+import '../../../../utils/extensions/extensions.dart';
+import '../../../settings/model/settings.model.dart';
 import '../../model/message.dart';
 
 class MessageTile extends StatelessWidget {

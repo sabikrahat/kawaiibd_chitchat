@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import '../../../auth/model/user.dart';
 
 import '../../../../../go.routes.dart';
 import '../../../../config/app.config.dart';
 import '../../../../config/constants.dart';
 import '../../../../config/get.platform.dart';
 import '../../../../utils/extensions/extensions.dart';
+import '../../../auth/model/user.dart';
 import '../../../home/provider/home.dart';
 
 class KAppBar extends ConsumerWidget implements PreferredSizeWidget {

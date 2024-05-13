@@ -11,7 +11,6 @@ import 'config/constants.dart' show appName;
 import 'config/is.under.min.size.dart';
 import 'config/screen_enlarge_warning.dart';
 import 'config/size.dart';
-import 'firebase/fcm.utils.dart';
 import 'localization/loalization.dart'
     show localizationsDelegates, onGenerateTitle, t;
 import 'modules/home/view/home.dart';
@@ -24,22 +23,10 @@ import 'shared/show_toast/awsome.snackbar/show.awesome.snackbar.dart';
 import 'utils/extensions/extensions.dart';
 import 'utils/logger/logger_helper.dart';
 
-class App extends ConsumerStatefulWidget {
+class App extends ConsumerWidget {
   const App({super.key = const Key(appName)});
-
   @override
-  ConsumerState<ConsumerStatefulWidget> createState() => _AppState();
-}
-
-class _AppState extends ConsumerState<App> {
-  @override
-  void initState() {
-    super.initState();
-    FcmUtils().init(context);
-  }
-
-  @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return MaterialApp.router(
       title: appName,
       theme: _themeData(ref),

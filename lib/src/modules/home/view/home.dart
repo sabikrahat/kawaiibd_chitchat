@@ -5,6 +5,7 @@ import '../../../../app.routes.dart';
 import '../../../../go.routes.dart';
 import '../../../config/app.config.dart';
 import '../../../config/constants.dart';
+import '../../../firebase/fcm.utils.dart';
 import '../../../shared/k_list_tile.dart/k_list_tile.dart';
 import '../../../utils/extensions/extensions.dart';
 import '../../../utils/themes/themes.dart';
@@ -14,12 +15,23 @@ import '../provider/home.dart';
 import 'components/drawer.dart';
 import 'components/search.delegate.dart';
 
-class HomeView extends StatelessWidget {
+class HomeView extends StatefulWidget {
   const HomeView({super.key});
 
   static const name = 'home';
   static const label = appName;
 
+  @override
+  State<HomeView> createState() => _HomeViewState();
+}
+
+class _HomeViewState extends State<HomeView> {
+
+  @override
+  void initState() {
+    super.initState();
+    FcmUtils().init(context);
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
