@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:kawaiibd_flutterfire_task/src/config/get.platform.dart';
 
 import '../../../../app.routes.dart';
 import '../../../../go.routes.dart';
@@ -26,12 +27,12 @@ class HomeView extends StatefulWidget {
 }
 
 class _HomeViewState extends State<HomeView> {
-
   @override
   void initState() {
     super.initState();
-    FcmUtils().init(context);
+    if (pt.isMobile) FcmUtils().init(context);
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

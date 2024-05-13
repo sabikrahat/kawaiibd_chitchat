@@ -1,3 +1,4 @@
+import 'package:device_preview/device_preview.dart';
 import 'package:fast_cached_network_image/fast_cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -14,10 +15,12 @@ import 'src/firebase/init.dart';
 import 'src/utils/themes/themes.dart';
 
 const isProduction = false;
+const isPreview = true;
 
 void main() async {
   await _init();
-  runApp(const ProviderScope(child: App()));
+  runApp(DevicePreview(
+      enabled: isPreview, builder: (_) => const ProviderScope(child: App())));
   SystemChrome.setSystemUIOverlayStyle(uiConfig);
 }
 

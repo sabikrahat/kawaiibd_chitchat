@@ -13,6 +13,7 @@ dependencies:
   app_settings: ^5.1.1
   cloud_firestore: ^4.17.3
   connectivity_plus: ^6.0.3
+  device_preview: ^1.1.0
   fast_cached_network_image: ^1.2.9
   file_picker: ^8.0.3
   firebase_analytics: ^10.10.5
