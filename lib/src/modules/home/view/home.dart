@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import '../../messaging/model/chat.room.dart';
 
 import '../../../../app.routes.dart';
 import '../../../../go.routes.dart';
@@ -10,6 +9,7 @@ import '../../../shared/k_list_tile.dart/k_list_tile.dart';
 import '../../../utils/extensions/extensions.dart';
 import '../../../utils/themes/themes.dart';
 import '../../auth/model/user.dart';
+import '../../messaging/model/chat.room.dart';
 import '../provider/home.dart';
 import 'components/drawer.dart';
 import 'components/search.delegate.dart';
@@ -74,6 +74,16 @@ class _Body extends ConsumerWidget {
                           style: context.text.bodyMedium!.copyWith(
                               fontWeight:
                                   chat.isMeSender ? null : FontWeight.bold)),
+                      trailing: chat.isMeSender
+                          ? null
+                          : Container(
+                              height: 8,
+                              width: 8,
+                              decoration: BoxDecoration(
+                                borderRadius: borderRadius25,
+                                color: context.theme.primaryColor,
+                              ),
+                            ),
                       leading: opponent?.imageWidget,
                       onTap: () => context.goPush(
                           '${AppRoutes.messageRoute}/${chat.opponentId}'),

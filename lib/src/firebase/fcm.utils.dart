@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'dart:math';
 
 import 'package:app_settings/app_settings.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
@@ -7,11 +6,12 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:http/http.dart' as http;
+import 'package:kawaiibd_flutterfire_task/src/utils/extensions/extensions.dart';
+
 import '../../app.routes.dart';
 import '../../go.routes.dart';
-import 'init.dart';
-
 import '../utils/logger/logger_helper.dart';
+import 'init.dart';
 
 const serverKey =
     'AAAAZNMRMlg:APA91bFptn2YQGXvgmXUctT5KthezWKXTXpktX24C0aL0hIrK-k0N2zbXUAyIUxqKYAKe-Q9rzgK6ul2RRHp2FGtR9xDa4mP_MAAtR4jImu94BRhzbf56dIMOtuVzW5Ll2GuqL0HBj0c';
@@ -43,7 +43,7 @@ class FcmUtils {
 
   void initLocalNotification(
       BuildContext context, RemoteMessage message) async {
-    const android = AndroidInitializationSettings('@mipmap/ic_launcher');
+    const android = AndroidInitializationSettings('@drawable/ic_notification');
     const ios = DarwinInitializationSettings();
     const initialize = InitializationSettings(android: android, iOS: ios);
     await _localNotificationPlugin.initialize(
@@ -80,7 +80,7 @@ class FcmUtils {
 
   void showNotification(RemoteMessage message) async {
     final androidChannel = AndroidNotificationChannel(
-      Random.secure().nextInt(100000).toString(),
+      message.data['notificationId'].toString(),
       'High Importance Notification',
       importance: Importance.max,
     );
@@ -107,7 +107,7 @@ class FcmUtils {
     //
     Future.delayed(const Duration(seconds: 0), () {
       _localNotificationPlugin.show(
-        0,
+        message.data['notificationId'].toString().toInt ?? 0,
         message.notification?.title,
         message.notification?.body,
         notificationDetails,
@@ -143,6 +143,7 @@ class FcmUtils {
     log.i('>> Body: ${message.notification?.body}');
     log.i('>> Data: ${message.data}');
     final uid = message.data['uid'];
+    log.i('>> Rahat Rahat UID: $uid');
     context.goPush('${AppRoutes.messageRoute}/$uid');
   }
 
@@ -151,6 +152,7 @@ class FcmUtils {
     required String title,
     required String body,
     required String? uid,
+    required int notificationId,
   }) async {
     if (token == null) {
       log.e('>> Error: Token is null');
@@ -171,7 +173,7 @@ class FcmUtils {
             'title': title,
             'body': body,
           },
-          'data': {'uid': uid},
+          'data': {'uid': uid, 'notificationId': notificationId},
           'to': token,
         }),
       );
@@ -190,6 +192,7 @@ Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
   log.i('>> Title: ${message.notification?.title}');
   log.i('>> Body: ${message.notification?.body}');
   log.i('>> Data: ${message.data}');
+  
 }
 
 extension CustomExt on NotificationSettings {

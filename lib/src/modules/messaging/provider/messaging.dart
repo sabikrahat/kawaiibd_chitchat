@@ -48,11 +48,25 @@ class MessagingProvider
       ).saveFrBs();
       cntrlr.clear();
       await FcmUtils().sendNotification(
-        token: receiver?.token,
-        title: receiver?.name ?? 'New Message',
-        body: message,
-        uid: receiver?.uid,
-      );
+          token: receiver?.token,
+          title: receiver?.name ?? 'New Message',
+          body: message,
+          uid: receiver?.uid,
+          notificationId:
+              getLast5Digits(receiver?.created.microsecondsSinceEpoch));
     }
   }
+}
+
+int getLast5Digits(int? microsecondsSinceEpoch) {
+  if (microsecondsSinceEpoch == null) return 0;
+  // Convert the microsecondsSinceEpoch to a string
+  String microsecondsString = microsecondsSinceEpoch.toString();
+
+  // Extract the last 5 digits from the string
+  String last5DigitsString = microsecondsString.substring(
+      microsecondsString.length - 5, microsecondsString.length);
+
+  // Parse the last 5 digits string into an integer
+  return int.parse(last5DigitsString);
 }
