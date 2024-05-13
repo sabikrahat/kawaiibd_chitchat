@@ -10,6 +10,7 @@ import 'package:http/http.dart' as http;
 
 import '../../app.routes.dart';
 import '../../go.routes.dart';
+import '../config/get.platform.dart';
 import '../utils/logger/logger_helper.dart';
 import 'init.dart';
 
@@ -55,7 +56,8 @@ class FcmUtils {
     );
   }
 
-  Future<String?> getDeviceToken() async => await _firebaseMessaging.getToken();
+  Future<String?> getDeviceToken() async =>
+      pt.isNotMobile ? null : await _firebaseMessaging.getToken();
 
   void isTokenRefresh() async {
     _firebaseMessaging.onTokenRefresh.listen((String? token) {
