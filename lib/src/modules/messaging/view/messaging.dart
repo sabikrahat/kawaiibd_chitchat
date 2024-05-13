@@ -62,7 +62,7 @@ class MessagingView extends ConsumerWidget {
                                 minLines: 1,
                                 maxLines: 3,
                                 controller: notifier.cntrlr,
-                                style: context.text.bodyMedium,
+                                style: context.text.titleMedium,
                                 decoration: InputDecoration(
                                   contentPadding: const EdgeInsets.only(
                                     left: 8.0,
@@ -84,18 +84,14 @@ class MessagingView extends ConsumerWidget {
                               ),
                             ),
                             if (notifier.isSendable)
-                              Padding(
-                                padding: const EdgeInsets.only(left: 6.0),
-                                child: InkWell(
-                                  onTap: () async =>
-                                      await notifier.sendMessage(),
-                                  child: Icon(
-                                    Icons.send,
-                                    color: context.theme.primaryColor,
-                                    size: 26.0,
-                                  ),
+                              IconButton(
+                                onPressed: () async =>
+                                    await notifier.sendMessage(),
+                                icon: Icon(
+                                  Icons.send,
+                                  color: context.theme.primaryColor,
                                 ),
-                              )
+                              ),
                           ],
                         ),
                       )
