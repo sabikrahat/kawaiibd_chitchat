@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../../app.routes.dart';
@@ -113,7 +114,7 @@ class _Body extends ConsumerWidget {
   }
 }
 
-class _NoChatsWidget extends StatelessWidget {
+class _NoChatsWidget extends HookWidget {
   const _NoChatsWidget();
 
   @override
