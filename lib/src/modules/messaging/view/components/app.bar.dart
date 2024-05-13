@@ -2,13 +2,13 @@ import 'package:fast_cached_network_image/fast_cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
-import '../../../../config/get.platform.dart';
 
 import '../../../../../go.routes.dart';
 import '../../../../config/app.config.dart';
 import '../../../../config/constants.dart';
+import '../../../../config/get.platform.dart';
 import '../../../../utils/extensions/extensions.dart';
-import '../../provider/messaging.dart';
+import '../../../home/provider/home.dart';
 
 class KAppBar extends ConsumerWidget implements PreferredSizeWidget {
   const KAppBar(this.uid, {super.key});
@@ -46,13 +46,6 @@ class KAppBar extends ConsumerWidget implements PreferredSizeWidget {
                   error: riverpodError,
                   data: (snapshot) {
                     final user = snapshot.data();
-                    // return KListTile(
-                    //   title: Text(user?.name ?? 'No Name',
-                    //       style: context.text.titleMedium),
-                    //   subtitle: Text(user?.email ?? 'No Email',
-                    //       style: context.text.bodyMedium),
-                    //   leading: user?.imageWidget,
-                    // );
                     return Row(
                       mainAxisAlignment: mainStart,
                       crossAxisAlignment: crossCenter,

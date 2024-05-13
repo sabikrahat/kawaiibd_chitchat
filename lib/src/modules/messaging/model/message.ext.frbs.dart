@@ -9,22 +9,16 @@ extension FrBsUserFrBsExtension on MessageModel {
   //
   Future<void> saveFrBs() async {
     if (id == null) {
-      final doc = await MessageModel.ref
-          .doc(chatRoomId)
-          .collection('chats')
-          .add(toJson());
+      await ChatRoom(
+              lastMessage: message,
+              lastSenderId: senderId,
+              users: [senderId, receiverId],
+              lastMessageTime: created)
+          .saveFrBs();
+      final doc = await MessageModel.ref(receiverId).add(this);
       id = doc.id;
     } else {
-      await MessageModel.ref.doc(chatRoomId).set(this);
+      await MessageModel.ref(receiverId).doc(id).set(this);
     }
-  }
-}
-
-String createChatRoomId(String s, [String? r]) {
-  r ??= FirebaseAuth.instance.currentUser?.uid ?? '';
-  if (s.substring(0, 1).codeUnitAt(0) > r.substring(0, 1).codeUnitAt(0)) {
-    return "${r}_ChitChat_$s";
-  } else {
-    return "${s}_ChitChat_$r";
   }
 }

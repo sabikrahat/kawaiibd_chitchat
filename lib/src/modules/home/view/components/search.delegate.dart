@@ -66,8 +66,11 @@ class SearchUsers extends SearchDelegate {
                               subtitle: Text(user.email,
                                   style: context.text.bodyMedium),
                               leading: user.imageWidget,
-                              onTap: () => context.goPush(
-                                  '${AppRoutes.messageRoute}/${user.uid}'),
+                              onTap: () {
+                                context.goPush(
+                                    '${AppRoutes.messageRoute}/${user.uid}');
+                                close(context, null);
+                              },
                             );
                           },
                         );
@@ -99,8 +102,11 @@ class SearchUsers extends SearchDelegate {
                               subtitle: Text(user.email,
                                   style: context.text.bodyMedium),
                               leading: user.imageWidget,
-                              onTap: () => context.goPush(
-                                  '${AppRoutes.messageRoute}/${user.uid}'),
+                              onTap: () {
+                                context.goPush(
+                                    '${AppRoutes.messageRoute}/${user.uid}');
+                                close(context, null);
+                              },
                             );
                           },
                         );
@@ -130,7 +136,7 @@ class SearchUsers extends SearchDelegate {
       child: ListView(
         shrinkWrap: true,
         children: const [
-          Icon(Icons.engineering_sharp, color: Colors.grey, size: 70.0),
+          Icon(Icons.people, color: Colors.grey, size: 70.0),
           Text(
             'No user found',
             textAlign: TextAlign.center,

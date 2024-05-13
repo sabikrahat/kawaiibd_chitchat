@@ -3,14 +3,14 @@ import 'dart:io';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
-import 'package:kawaiibd_flutterfire_task/src/firebase/init.dart';
-import '../model/user.dart';
+import 'package:kawaiibd_flutterfire_task/src/firebase/fcm.utils.dart';
 
 import '../../../../go.routes.dart';
 import '../../../firebase/upload.to.firebase.storage.dart';
 import '../../../shared/show_toast/awsome.snackbar/awesome.snackbar.dart';
 import '../../../shared/show_toast/awsome.snackbar/show.awesome.snackbar.dart';
 import '../../../utils/logger/logger_helper.dart';
+import '../model/user.dart';
 import '../provider/auth.dart';
 
 Future<void> frbsSignup(BuildContext context, AuthenticationPd notifier) async {
@@ -27,7 +27,7 @@ Future<void> frbsSignup(BuildContext context, AuthenticationPd notifier) async {
         name: notifier.nameCntrlr.text,
         email: notifier.emailCntrlr.text,
         avatar: await uploadImageToFirebae(notifier.image),
-        token: await FirebaseUtils().getDeviceToken(),
+        token: await FcmUtils().getDeviceToken(),
         created: DateTime.now().toUtc(),
       ).saveFrBs();
       EasyLoading.dismiss();
@@ -56,7 +56,7 @@ Future<void> frbsSignin(BuildContext context, AuthenticationPd notifier) async {
     )
         .then((uc) async {
       final user = (await UserModel.ownDocRef(uc.user?.uid).get()).data();
-      user?.token = await FirebaseUtils().getDeviceToken();
+      user?.token = await FcmUtils().getDeviceToken();
       await user?.saveFrBs();
       EasyLoading.dismiss();
       goRouter.refresh();

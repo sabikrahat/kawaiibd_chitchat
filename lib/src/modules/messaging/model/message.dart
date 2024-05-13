@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:kawaiibd_flutterfire_task/src/modules/messaging/model/chat.room.dart';
 
 part 'message.ext.dart';
 part 'message.ext.frbs.dart';
@@ -36,20 +37,16 @@ class MessageModel {
   factory MessageModel.fromRawJson(String str) =>
       MessageModel.fromJson(json.decode(str));
 
-  static CollectionReference<MessageModel> get ref => FirebaseFirestore.instance
-      .collection('messages')
-      .withConverter<MessageModel>(
-        fromFirestore: (s, _) => MessageModel.fromJson(s.data()!)..id = s.id,
-        toFirestore: (s, _) => s.toJson(),
-      );
-
-  static CollectionReference<MessageModel> collectionRef(String s) => ref
-      .doc(createChatRoomId(s))
-      .collection('chats')
-      .withConverter<MessageModel>(
-        fromFirestore: (s, _) => MessageModel.fromJson(s.data()!)..id = s.id,
-        toFirestore: (s, _) => s.toJson(),
-      );
+  static CollectionReference<MessageModel> ref(String s) =>
+      FirebaseFirestore.instance
+          .collection('chatrooms')
+          .doc(createChatRoomId(s))
+          .collection('chats')
+          .withConverter<MessageModel>(
+            fromFirestore: (s, _) =>
+                MessageModel.fromJson(s.data()!)..id = s.id,
+            toFirestore: (s, _) => s.toJson(),
+          );
 
   @override
   String toString() {

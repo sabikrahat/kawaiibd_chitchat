@@ -2,14 +2,8 @@ part of 'user.dart';
 
 extension FrBsUserFrBsExtension on UserModel {
   //
-  Future<void> saveFrBs() async {
-    if (uid == null) {
-      final doc = await UserModel.collectionRef.add(this);
-      uid = doc.id;
-    } else {
+  Future<void> saveFrBs() async =>
       await UserModel.collectionRef.doc(uid).set(this);
-    }
-  }
 }
 
 extension FrBsListUserFrBsExtension on List<UserModel> {

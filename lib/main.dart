@@ -29,7 +29,6 @@ Future<void> _init() async {
   configLoading();
   await initAppDatum();
   await FirebaseUtils.init();
-  await FirebaseUtils().initNotifications();
 }
 
 Future<void> _initFastCachedImageConfig() async {

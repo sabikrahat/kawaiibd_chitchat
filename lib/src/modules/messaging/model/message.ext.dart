@@ -1,7 +1,6 @@
 part of 'message.dart';
 
 extension MessageModelX on MessageModel {
-  // copy with
   MessageModel copyWith({
     String? id,
     String? message,

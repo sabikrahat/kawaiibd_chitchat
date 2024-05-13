@@ -1,10 +1,8 @@
-import 'package:flutter/material.dart'
-    show BuildContext, GlobalKey, Key, MaterialApp, MediaQuery, NavigatorState, TextScaler, ThemeData, Widget;
+import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart'
     show AppLocalizations;
-import 'package:flutter_riverpod/flutter_riverpod.dart'
-    show ConsumerWidget, WidgetRef;
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:kawaiibd_flutterfire_task/src/modules/settings/model/locale/locale.model.dart';
 import 'package:kawaiibd_flutterfire_task/src/modules/settings/model/theme/theme.model.dart';
 
@@ -13,6 +11,7 @@ import 'config/constants.dart' show appName;
 import 'config/is.under.min.size.dart';
 import 'config/screen_enlarge_warning.dart';
 import 'config/size.dart';
+import 'firebase/fcm.utils.dart';
 import 'localization/loalization.dart'
     show localizationsDelegates, onGenerateTitle, t;
 import 'modules/home/view/home.dart';
@@ -25,13 +24,22 @@ import 'shared/show_toast/awsome.snackbar/show.awesome.snackbar.dart';
 import 'utils/extensions/extensions.dart';
 import 'utils/logger/logger_helper.dart';
 
-final navigatorKey = GlobalKey<NavigatorState>();
-
-class App extends ConsumerWidget {
+class App extends ConsumerStatefulWidget {
   const App({super.key = const Key(appName)});
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  ConsumerState<ConsumerStatefulWidget> createState() => _AppState();
+}
+
+class _AppState extends ConsumerState<App> {
+  @override
+  void initState() {
+    super.initState();
+    FcmUtils().init(context);
+  }
+
+  @override
+  Widget build(BuildContext context) {
     return MaterialApp.router(
       title: appName,
       theme: _themeData(ref),

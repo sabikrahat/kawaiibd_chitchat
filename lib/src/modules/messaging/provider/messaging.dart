@@ -3,13 +3,11 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../../../firebase/init.dart';
+import '../../../firebase/fcm.utils.dart';
 import '../../../utils/extensions/extensions.dart';
 import '../../auth/model/user.dart';
+import '../../home/provider/home.dart';
 import '../model/message.dart';
-
-final singleUserStreamProvider = StreamProvider.family(
-    (_, String uid) => UserModel.singleDocRef(uid).snapshots());
 
 typedef MessagingNotifier = StreamNotifierProviderFamily<MessagingProvider,
     QuerySnapshot<MessageModel>, String>;
@@ -22,7 +20,7 @@ class MessagingProvider
   @override
   Stream<QuerySnapshot<MessageModel>> build(String arg) {
     listener();
-    return MessageModel.collectionRef(arg)
+    return MessageModel.ref(arg)
         .orderBy('created', descending: true)
         .snapshots();
   }
@@ -49,7 +47,7 @@ class MessagingProvider
         created: DateTime.now().toUtc(),
       ).saveFrBs();
       cntrlr.clear();
-      await FirebaseUtils().sendNotification(
+      await FcmUtils().sendNotification(
         token: receiver?.token,
         title: receiver?.name ?? 'New Message',
         body: message,
