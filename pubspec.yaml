@@ -24,6 +24,7 @@ dependencies:
   flutter:
     sdk: flutter
   flutter_easyloading: ^3.0.5
+  flutter_hooks: ^0.20.5
   flutter_local_notifications: ^17.1.2
   flutter_localizations:
     sdk: flutter
