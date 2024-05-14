@@ -7,7 +7,6 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:http/http.dart' as http;
-import 'package:kawaiibd_flutterfire_task/src/config/get.platform.dart';
 
 import '../constant/get.platform.dart';
 import '../routing/app.routes.dart';

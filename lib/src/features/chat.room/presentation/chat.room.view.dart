@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:kawaiibd_flutterfire_task/src/config/get.platform.dart';
 
 import '../../../components/k_list_tile.dart/k_list_tile.dart';
 import '../../../constant/app.config.dart';
