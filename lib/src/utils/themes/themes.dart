@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart' show SystemUiOverlayStyle;
 
-import '../../config/constants.dart';
-import '../../db/hive.dart';
-import '../../modules/settings/model/settings.model.dart';
-import '../../modules/settings/model/theme/theme.model.dart';
+import '../../constant/constants.dart';
+import '../../local.db/hive.dart';
+import '../../features/settings/domain/settings.model.dart';
+import '../../features/settings/domain/theme/theme.model.dart';
 import '../extensions/extensions.dart';
 
 String get fontFamily =>

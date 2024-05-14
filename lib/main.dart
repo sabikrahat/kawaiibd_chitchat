@@ -7,10 +7,10 @@ import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:url_strategy/url_strategy.dart';
 
 import 'src/app.dart' show App;
-import 'src/config/get.platform.dart';
-import 'src/db/db.dart' show initAppDatum, openDB;
-import 'src/db/paths.dart';
-import 'src/firebase/init.dart';
+import 'src/constant/get.platform.dart';
+import 'src/local.db/db.dart' show initAppDatum, openDB;
+import 'src/local.db/paths.dart';
+import 'src/firebase.module/init.dart';
 import 'src/utils/themes/themes.dart';
 
 const isProduction = false;

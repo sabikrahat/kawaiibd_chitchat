@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:path/path.dart';
 
-import '../../db/paths.dart';
+import '../../local.db/paths.dart';
 
 part 'src/color.dart';
 part 'src/context.dart';

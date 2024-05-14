@@ -3,23 +3,21 @@ import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart'
     show AppLocalizations;
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:kawaiibd_flutterfire_task/src/modules/settings/model/locale/locale.model.dart';
-import 'package:kawaiibd_flutterfire_task/src/modules/settings/model/theme/theme.model.dart';
+import 'package:kawaiibd_flutterfire_task/src/features/settings/domain/locale/locale.model.dart';
+import 'package:kawaiibd_flutterfire_task/src/features/settings/domain/theme/theme.model.dart';
 
-import '../go.routes.dart';
-import 'config/constants.dart' show appName;
-import 'config/is.under.min.size.dart';
-import 'config/screen_enlarge_warning.dart';
-import 'config/size.dart';
+import 'components/internet/view/internet.dart';
+import 'components/show_toast/awsome.snackbar/show.awesome.snackbar.dart';
+import 'constant/constants.dart' show appName;
+import 'constant/size.dart';
+import 'features/chat.room/presentation/chat.room.view.dart';
+import 'features/settings/data/fonts.provider.dart';
+import 'features/settings/data/locale.provider.dart';
+import 'features/settings/data/performance.overlay.provider.dart';
+import 'features/settings/data/theme.provider.dart';
 import 'localization/loalization.dart'
     show localizationsDelegates, onGenerateTitle, t;
-import 'modules/home/view/home.dart';
-import 'modules/settings/provider/fonts.provider.dart';
-import 'modules/settings/provider/locale.provider.dart';
-import 'modules/settings/provider/performance.overlay.provider.dart';
-import 'modules/settings/provider/theme.provider.dart';
-import 'shared/internet/view/internet.dart';
-import 'shared/show_toast/awsome.snackbar/show.awesome.snackbar.dart';
+import 'routing/go.routes.dart';
 import 'utils/extensions/extensions.dart';
 import 'utils/logger/logger_helper.dart';
 
@@ -50,9 +48,7 @@ class App extends ConsumerWidget {
             devicePixelRatio: 1.0,
           ),
           child: InternetWidget(
-            child: isUnderMinSize(ctx.mq.size)
-                ? const ScreenEnlargeWarning()
-                : child ?? const HomeView(),
+            child: child ?? const ChatRoomView(),
           ),
         );
       }),
