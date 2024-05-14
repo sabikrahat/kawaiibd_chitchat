@@ -3,11 +3,11 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:intl/intl.dart';
 
-import '../../../../constant/constants.dart';
-import '../../../../localization/loalization.dart';
 import '../../../../components/animations_widget/animated_popup.dart';
 import '../../../../components/animations_widget/animated_widget_shower.dart';
 import '../../../../components/k_list_tile.dart/k_list_tile.dart';
+import '../../../../constant/constants.dart';
+import '../../../../localization/loalization.dart';
 import '../../../../utils/extensions/extensions.dart';
 import '../../data/date.format.provider.dart';
 

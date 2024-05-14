@@ -3,13 +3,13 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
-import '../../../../constant/get.platform.dart';
-import '../../../../localization/loalization.dart';
 import '../../../../components/animations_widget/animated_popup.dart';
 import '../../../../components/animations_widget/animated_widget_shower.dart';
 import '../../../../components/k_list_tile.dart/k_list_tile.dart';
 import '../../../../components/show_toast/awsome.snackbar/awesome.snackbar.dart';
 import '../../../../components/show_toast/awsome.snackbar/show.awesome.snackbar.dart';
+import '../../../../constant/get.platform.dart';
+import '../../../../localization/loalization.dart';
 import '../../../../utils/extensions/extensions.dart';
 import '../../application/delete.db.dart';
 

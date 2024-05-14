@@ -1,44 +1,31 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
 
 import '../../constant/constants.dart';
 
-class AnimatedPopup extends StatefulWidget {
-  const AnimatedPopup({super.key, required this.child});
-
+class AnimatedPopup extends HookWidget {
   final Widget child;
 
-  @override
-  State<AnimatedPopup> createState() => _AnimatedPopupState();
-}
-
-class _AnimatedPopupState extends State<AnimatedPopup>
-    with SingleTickerProviderStateMixin {
-  AnimationController? _animationSigninController;
-  Animation<double>? _animationSignin;
-
-  @override
-  void initState() {
-    super.initState();
-    _animationSigninController = AnimationController(
-      vsync: this,
-      duration: kAnimationDuration(0.3),
-    );
-    _animationSignin = CurvedAnimation(
-        parent: _animationSigninController!, curve: Curves.easeInOut);
-  }
-
-  @override
-  void dispose() {
-    super.dispose();
-    _animationSigninController!.dispose();
-  }
+  const AnimatedPopup({super.key, required this.child});
 
   @override
   Widget build(BuildContext context) {
-    _animationSigninController!.forward();
+    final animationController = useAnimationController(
+      duration: kAnimationDuration(0.3),
+    );
+    final animation = CurvedAnimation(
+      parent: animationController,
+      curve: Curves.easeInOut,
+    );
+
+    useEffect(() {
+      animationController.forward();
+      return null; // Forward the animation
+    }, []);
+
     return ScaleTransition(
-      scale: _animationSignin!,
-      child: widget.child,
+      scale: animation,
+      child: child,
     );
   }
 }

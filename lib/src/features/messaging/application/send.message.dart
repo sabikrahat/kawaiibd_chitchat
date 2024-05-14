@@ -1,5 +1,5 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:kawaiibd_flutterfire_task/src/utils/extensions/extensions.dart';
+import '../../../utils/extensions/extensions.dart';
 
 import '../../../constant/get.platform.dart';
 import '../../../firebase.module/fcm.utils.dart';

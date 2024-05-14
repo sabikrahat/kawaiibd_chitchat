@@ -36,6 +36,7 @@ class SettingsView extends StatelessWidget {
                   child: TabBar(
                     splashBorderRadius: borderRadius30,
                     isScrollable: true,
+                    tabAlignment: TabAlignment.start,
                     physics: const BouncingScrollPhysics(),
                     labelStyle: context.theme.textTheme.labelLarge,
                     tabs: [Tab(text: t.basic), Tab(text: t.advanced)],

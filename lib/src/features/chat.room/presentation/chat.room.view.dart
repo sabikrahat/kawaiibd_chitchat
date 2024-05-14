@@ -12,30 +12,26 @@ import '../../../routing/go.routes.dart';
 import '../../../utils/extensions/extensions.dart';
 import '../../../utils/themes/themes.dart';
 import '../../auth/domain/user.dart';
-import '../domain/chat.room.dart';
 import '../data/chat.room.dart';
+import '../domain/chat.room.dart';
 import 'components/drawer.dart';
 import 'components/search.delegate.dart';
 
-class ChatRoomView extends StatefulWidget {
+class ChatRoomView extends HookWidget {
   const ChatRoomView({super.key});
 
   static const name = 'chatroom';
   static const label = appName;
 
   @override
-  State<ChatRoomView> createState() => _ChatRoomViewState();
-}
-
-class _ChatRoomViewState extends State<ChatRoomView> {
-  @override
-  void initState() {
-    super.initState();
-    if (pt.isMobile) FcmUtils().init(context);
-  }
-
-  @override
   Widget build(BuildContext context) {
+    final isMobile = pt.isMobile;
+
+    useEffect(() {
+      if (isMobile) FcmUtils().init(context);
+      return null;
+    }, []);
+
     return Scaffold(
       appBar: AppBar(
         title: const Text(appName),
@@ -114,7 +110,7 @@ class _Body extends ConsumerWidget {
   }
 }
 
-class _NoChatsWidget extends HookWidget {
+class _NoChatsWidget extends StatelessWidget {
   const _NoChatsWidget();
 
   @override

@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart' show SystemUiOverlayStyle;
 
 import '../../constant/constants.dart';
-import '../../local.db/hive.dart';
 import '../../features/settings/domain/settings.model.dart';
 import '../../features/settings/domain/theme/theme.model.dart';
+import '../../local.db/hive.dart';
 import '../extensions/extensions.dart';
 
 String get fontFamily =>

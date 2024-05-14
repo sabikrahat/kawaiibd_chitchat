@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../../../../constant/constants.dart';
 import '../../../../components/animations_widget/animated_popup.dart';
+import '../../../../constant/constants.dart';
 import '../../../../utils/extensions/extensions.dart';
 import '../../../../utils/transations/down.to.up.dart';
 import '../../application/auth.api.service.dart';

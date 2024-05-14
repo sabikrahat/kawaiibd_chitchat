@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
+import '../../chat.room/application/chat.room.dart';
 import '../../chat.room/domain/chat.room.dart';
 
 part 'message.ext.dart';

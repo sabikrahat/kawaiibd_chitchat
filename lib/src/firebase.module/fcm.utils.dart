@@ -8,9 +8,9 @@ import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:http/http.dart' as http;
 
+import '../constant/get.platform.dart';
 import '../routing/app.routes.dart';
 import '../routing/go.routes.dart';
-import '../constant/get.platform.dart';
 import '../utils/logger/logger_helper.dart';
 import 'init.dart';
 

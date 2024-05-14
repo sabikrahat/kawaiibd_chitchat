@@ -4,12 +4,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/svg.dart';
 
-import '../../../../constant/constants.dart';
-import '../../../../localization/loalization.dart';
 import '../../../../components/animations_widget/animated_popup.dart';
 import '../../../../components/animations_widget/animated_widget_shower.dart';
 import '../../../../components/error_widget/error_widget.dart';
 import '../../../../components/k_list_tile.dart/k_list_tile.dart';
+import '../../../../constant/constants.dart';
+import '../../../../localization/loalization.dart';
 import '../../../../utils/extensions/extensions.dart';
 import '../../data/fonts.provider.dart';
 
